@@ -33,9 +33,11 @@ try {
     $i = 1
     for (; $i -le $numeroDeExecucoes; $i++) {   
         
-        $DEFAULTPRINTER = (Get-CimInstance -ClassName CIM_Printer | WHERE { $_.Default -eq $True }[0])
-        $PRINTERTMP = (Get-CimInstance -ClassName CIM_Printer | WHERE { $_.NAme -eq $nomeDaImpressora }[0])
-        $PRINTERTMP | Invoke-CimMethod -MethodName SetDefaultPrinter | Out-Null
+        #$DEFAULTPRINTER = (Get-CimInstance -ClassName CIM_Printer | WHERE { $_.Default -eq $True }[0])
+        #$PRINTERTMP = (Get-CimInstance -ClassName CIM_Printer | WHERE { $_.NAme -eq $nomeDaImpressora }[0])
+        #$PRINTERTMP | Invoke-CimMethod -MethodName SetDefaultPrinter | Out-Null
+
+        (New-Object -ComObject WScript.Network).SetDefaultPrinter($nomeDaImpressora)
         Start-Process -FilePath $MYFILE -Verb print -PassThru -Wait
         #$DEFAULTPRINTER | Invoke-CimMethod -MethodName SetDefaultPrinter | Out-Null
 
