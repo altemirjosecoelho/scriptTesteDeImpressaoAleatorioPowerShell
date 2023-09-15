@@ -1,1 +1,0 @@
-runas /noprofile /user:administrator "powershell.exe -command executar.ps1"
